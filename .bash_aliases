@@ -1,3 +1,6 @@
+# Better shell command defaults
+alias ls='ls -G'
+
 # Bash Configuration
 alias bash_aliases='vim ~/.bash_aliases.local'
 alias vimrc='vim ~/.vim/vimrc'

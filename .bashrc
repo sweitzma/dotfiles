@@ -82,8 +82,5 @@ fi
 #  configurations
 #####################################
 
-source ~/co/manage/script/svnmerge_helpers.sh
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-alias ls='ls -G'
 source ~/.bashrc.local
