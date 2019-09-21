@@ -4,3 +4,4 @@ undodir/**
 !**.placeholder
 .copy
 vimrc.local
+sessions/**

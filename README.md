@@ -23,8 +23,12 @@ Make sure to install the tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
+## Vim
+make sure to synlink before running the setup
+
 ## TODO
 .bashrc could use to be pruned and revisited sometime
+should we hard or soft symlink?
 
 It would be nice to add sections and scripts related to homebrew and other command line tools that I use. This would be those like
 * fzf
