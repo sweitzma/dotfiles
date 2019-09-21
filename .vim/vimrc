@@ -1,0 +1,202 @@
+"
+" sam weitzman
+"
+
+""" Colors
+syntax on
+set t_Co=256
+set background=dark
+silent! colorscheme monokai
+
+""" Base settings
+set number                " show linenumbers
+set spell spelllang=en_us " set spelling language
+set nospell               " turn off spelling by default
+set showcmd               " show command in ottom bar
+set cursorline            " highlight current line
+set wildmenu              " visual autocomplete for command menu
+set showmatch             " highlight matching [{()}]
+set nocompatible          " don't worry about vi, sorry old pal
+set ttyfast               " fast terminal => better redrawing, etc
+set vb t_vb=              " no visual bell
+set mouse=a               " enable mouse
+set ttymouse=sgr          " mouse works in far out columns
+set scrolloff=15          " keep 15 lines at top and bottom of window
+set incsearch             " search as characters are entered
+set hlsearch              " highlight matches
+set ignorecase            " ignore case when searching
+set history=1000          " lengthen history
+set undolevels=1000       " lengthen undo history
+set backspace=indent,eol,start " backspace will delete more than just that line
+set smarttab
+set complete-=i
+set autoindent
+set ruler
+set splitbelow
+set splitright
+set hidden
+
+""" Persist undos
+set undofile
+set undodir=~/.vim/undodir
+
+""" Spaces, tabs, line sizing
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set colorcolumn=100,120
+set textwidth=120
+
+" Git commit messages
+au FileType gitcommit set tw=72
+
+" File specific settings
+filetype plugin indent on
+au FileType ruby setlocal ts=2 sts=2 sw=2
+au FileType python setlocal ts=4 sts=4 sw=4
+au FileType javascript setlocal ts=2 sts=2 sw=2
+
+" Extra whitespace at the end of lines
+highlight ExtraWhitespace ctermbg=red guibg=red
+au WinEnter * match ExtraWhitespace /\s\+$/
+au VimEnter * match ExtraWhitespace /\s\+$/
+fun! TrimWhitespace()
+  let l:save = winsaveview()
+  keeppatterns %s/\s\+$//e
+  call winrestview(l:save)
+  write
+endfun
+command! TrimWhitespace call TrimWhitespace()
+
+""" Vim-Plug
+call plug#begin()
+  """" language support
+  Plug 'tpope/vim-endwise'                     " adds end keyword for ruby and others
+  Plug 'pangloss/vim-javascript'               " better js syntax and indenting
+  Plug 'mxw/vim-jsx'                           " JSX support
+  Plug 'isruslan/vim-es6'                      " ES6 syntax
+  Plug 'sheerun/vim-polyglot'                  " lazy loading many syntax types
+  Plug 'lervag/vimtex'                         " TeX support
+
+  """" look
+  Plug 'crusoexia/vim-monokai'                 " theme
+  Plug 'vim-airline/vim-airline'               " status bar upgrade
+
+  """" ease of editing
+  Plug 'justinmk/vim-sneak'                    " motion like 'f' but with two characters
+  Plug 'tpope/vim-commentary'                  " comment/uncomment with gcc
+  Plug 'junegunn/fzf', {
+    \'dir': '~/.fzf', 'do': './install --all'
+  \}                                           " make sure fzf is available
+  Plug 'junegunn/fzf.vim'                      " fzf bindings and functions
+  Plug 'tommcdo/vim-exchange'                  " swap objects with cx<motion>
+  Plug 'kana/vim-arpeggio'                     " map chord key press
+  Plug 'tpope/vim-repeat'                      " add easy plugin support to vim repeats
+
+  """" features
+  Plug 'tpope/vim-fugitive'                    " git funtionality
+  Plug 'w0rp/ale'                              " linter
+  Plug 'rizzatti/dash.vim'                     " hook into Dash helpdocs
+  Plug 'neoclide/coc.nvim', {
+    \'branch': 'release'
+  \}                                           " better completion
+
+  """" other
+  Plug 'tmux-plugins/vim-tmux-focus-events'    " make vim focus events work in tmux
+  Plug 'tmux-plugins/vim-tmux'                 " tmux config file type benefits
+
+  """" might be interested in these some day - keep as a reminder
+  " Plug 'kbarrette/mediummode'                  " prevents bad vim movement habbits
+  " Plug 'takac/vim-hardtime'                    " prevents bad vim movement habbits
+  " Plug 'christoomey/vim-tmux-navigator'        " integration in tmux
+  " Plug 'ervandew/supertab'                     " tab auto-completion
+  " Plug 'valloric/youcompleteme'                " code completion
+  " Plug 'tpope/vim-surround'                    " easily surround with tags, braces, etc
+  " Plug 'easymotion/vim-easymotion'             " like vim-sneak but more intense
+  " Plug 'jreybert/vimagit'                      " tries to be like emacs magit
+call plug#end()
+
+""" [plugin] Ale
+let g:ale_linters = {
+  \'ruby': ['ruby', 'rubocop'],
+  \'jsx': ['eslint'],
+  \'javascript': ['eslint'],
+  \'javascript.jsx': ['eslint'],
+\}
+let g:ale_set_highlights = 0
+
+""" [plugin] Airline
+let g:airline#extensions#tabline#enabled = 1     " show top statusline for buffers
+let g:airline#extensions#tabline#fnamemod = ':t' " show filename only, no path
+
+""" [plugin] vim-sneak
+let g:sneak#s_next = 1                           " enable 's' to go to next match
+
+""" [plugin] coc.vim
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+" map tab to autocomplete
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+""" [plugin] vim-arpeggio
+silent! call arpeggio#load()
+silent! Arpeggio inoremap jk <ESC>
+silent! Arpeggio inoremap fj <ESC>
+
+""" Key Mappings
+noremap <CR> 5k
+noremap <Space> 5j
+noremap ; :
+nnoremap j gj
+nnoremap k gk
+
+""" Modify visual yank to write result to file
+vnoremap y :yank<CR>gv:w! ~/.vim/.copy<CR>
+noremap <C-p> :!cat ~/.vim/.copy<CR>
+
+""" fzf and window splitting
+noremap <Leader>f :call fzf#run({'sink': 'edit',   'options': '-i', 'down': 10})<CR>
+noremap <Leader>v :call fzf#run({'sink': 'vsplit', 'options': '-i', 'down': 10})<CR>
+noremap <Leader>h :call fzf#run({'sink': 'split',  'options': '-i', 'down': 10})<CR>
+noremap <Leader>y :call fzf#run({'sink': 'vsplit', 'options': '-i -q ' . expand(ToggleRSpec()), 'down': 10})<CR>
+
+""" No more trailing whitespace
+noremap <Leader>w :call TrimWhitespace()<CR>
+
+""" Buffer navigation
+nnoremap <Leader>r :bnext<CR>
+nnoremap <Leader>e :bprevious<CR>
+nnoremap <Leader>bq :bp <BAR> bd #<CR>
+nnoremap <Leader>bl :ls<CR>
+
+""" Searching jumps to middle of screen
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+""" Window navigation
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+
+silent! source ~/.vim/vimrc.local
+

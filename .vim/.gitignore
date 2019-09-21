@@ -1,0 +1,6 @@
+autoload/**
+plugged/**
+undodir/**
+!**.placeholder
+.copy
+vimrc.local
