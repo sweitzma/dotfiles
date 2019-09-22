@@ -5,3 +5,4 @@ undodir/**
 .copy
 vimrc.local
 sessions/**
+.netrwhist

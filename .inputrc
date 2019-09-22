@@ -1,23 +1,15 @@
 # https://web.archive.org/web/20150403162757/http://linux.about.com/library/cmd/blcmdl3_readline.htm
+# https://www.topbug.net/blog/2017/07/31/inputrc-for-humans/
 
 set editing-mode emacs
-# set editing-mode vi
-
-# Show all completions as soon as I press tab, even if there's more than one
-set show-all-if-ambiguous on
-
-# Ignore case
-set completion-ignore-case on
-
-# on menu-complete, first display the common prefix, then cycle through the
-# options when hitting TAB
-set menu-complete-display-prefix on
-
-set colored-stats On
-set completion-prefix-display-length 3
 set show-all-if-ambiguous On
+set show-all-if-unmodified On
+set completion-ignore-case Off
+set colored-stats On
 set visible-stats On
+set mark-symlinked-directories On
 
-# Pressing tab will list all completions & select the first one. Pressing it
-# again will cycle through available completions.
-TAB: menu-complete
+# menu-complete
+# This feature will make tab cycle through results instead of just showing them below
+# set menu-complete-display-prefix On
+# TAB: menu-complete
