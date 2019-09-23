@@ -47,9 +47,10 @@ if [ -d "$HOME/local/bin" ] ; then
 fi
 
 # Source other files
-if test -f '~/.bash_profile.local'; then
-  source ~/.bash_profile.local
+if test -f "$HOME/.bash_profile.local"; then
+  source $HOME/.bash_profile.local
 fi
+
 source ~/.bashrc
 
 
