@@ -29,7 +29,7 @@ __prompt_command() {
     PS1+="${RCol}\n $ "
 }
 
-export FZF_DEFAULT_COMMAND='fd --type f --no-ignore-vcs'
+export FZF_DEFAULT_COMMAND='fd --type f --no-ignore-vcs -H'
 
 # PATH variable
 export PATH=/bin:$PATH

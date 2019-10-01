@@ -1,8 +1,8 @@
-# Bash Configuration
-alias bash_aliases='vim ~/.bash_aliases.local'
+# Shell navigation
+alias pd='pushd .'
+
+# Quick Configuration
 alias vimrc='vim ~/.vim/vimrc'
-alias ltmuxrc='vim ~/.tmux.conf.local'
-alias lbash_aliases='vim ~/.bash_aliases.local'
 alias lvimrc='vim ~/.vim/vimrc.local'
 
 # Git

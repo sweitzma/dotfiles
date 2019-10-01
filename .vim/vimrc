@@ -93,6 +93,7 @@ call plug#begin()
   Plug 'tommcdo/vim-exchange'                  " swap objects with cx<motion>
   Plug 'kana/vim-arpeggio'                     " map chord key press
   Plug 'tpope/vim-repeat'                      " add easy plugin support to vim repeats
+  Plug 'jremmen/vim-ripgrep'                   " use ripgrep within vim
 
   """" features
   Plug 'tpope/vim-fugitive'                    " git funtionality
@@ -157,6 +158,10 @@ endfunction
 silent! call arpeggio#load()
 silent! Arpeggio inoremap jk <ESC>
 silent! Arpeggio inoremap fj <ESC>
+silent! Arpeggio nnoremap vn :noh<CR>
+
+""" [plugin] vim-riprep
+let g:rg_highlight = 1
 
 """ Key Mappings
 noremap <CR> 5k
