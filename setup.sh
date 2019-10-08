@@ -13,7 +13,7 @@ touch $HOME/.vim/vimrc.local
 
 echo "=== Setting up emacs"
 # ln -sv $HOME/dotfiles/.emacs.d $HOME
-cp .emacs/default_local_configuration.org $HOME/.emacs.local.org
+cp $HOME/dotfiles/.emacs.d/default_local_configuration.org $HOME/.emacs.local.org
 
 echo "=== Creating empty local versions of dotfiles"
 touch $HOME/.bashrc.local
