@@ -11,6 +11,9 @@ echo "=== Setting up vim"
 touch $HOME/.vim/vimrc.local
 ./.vim/vim_setup.sh
 
+echo "=== Setting up emacs"
+cp .emacs/default_local_configuration.org $HOME/.emacs.local.org
+
 echo "=== Creating empty local versions of dotfiles"
 touch $HOME/.bashrc.local
 touch $HOME/.bash_aliases.local
@@ -27,6 +30,7 @@ echo "=== Skipping any symlinks"
 # ln -sv .bash_logout $HOME/.bash_logout
 # ln -sv .bash_profile $HOME/.bash_profile
 # ln -sv .inputrc $HOME/.inputrc
+# ln -sv .emacs.d $HOME/.emacs.d
 
 echo "=== Setup complete"
 

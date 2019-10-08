@@ -25,6 +25,10 @@ alias vi='vim'
 alias vl='vim $LAST_FILE'
 alias elf='echo $LAST_FILE'
 
+# Org mode shortcuts
+alias wk="emacs $HOME/org/work.org"
+alias hm="emacs $HOME/org/home.org"
+
 if [ -f ~/.bash_aliases.local ]; then
     . ~/.bash_aliases.local
 fi

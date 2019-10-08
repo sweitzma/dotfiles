@@ -1,0 +1,6 @@
+#+TITLE: Local Emacs Configuration
+#+OPTIONS: toc:nil num:nil
+
+* Make sure that no nil warnings thrown
+#+BEGIN_SRC emacs-lisp
+#+END_SRC
