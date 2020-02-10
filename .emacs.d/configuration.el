@@ -1,6 +1,11 @@
 (require 'package)
 
 (setq inhibit-splash-screen t)
+(global-visual-line-mode 1)
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
 
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)

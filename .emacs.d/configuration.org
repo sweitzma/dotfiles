@@ -1,7 +1,7 @@
 #+TITLE: Emacs Configuration
 #+OPTIONS: toc:nil num:nil
 
-Inpriration [[https://github.com/hrs/dotfiles/tree/master/emacs][here]].
+Inspriration [[https://github.com/hrs/dotfiles/tree/master/emacs][here]].
 
 * Packages
 #+BEGIN_SRC emacs-lisp
@@ -12,6 +12,14 @@ Inpriration [[https://github.com/hrs/dotfiles/tree/master/emacs][here]].
 Make some sensible defaults like skipping the slash screen.
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-splash-screen t)
+  (global-visual-line-mode 1)
+#+END_SRC
+
+This will make the GUI be as minimal as possible.
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
 #+END_SRC
 
 * Org Mode

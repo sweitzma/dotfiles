@@ -21,6 +21,7 @@ function vf {
   fi
   vim $LAST_FILE
 }
+
 alias vi='vim'
 alias vl='vim $LAST_FILE'
 alias elf='echo $LAST_FILE'
@@ -32,4 +33,3 @@ alias hm="emacs $HOME/org/home.org"
 if [ -f ~/.bash_aliases.local ]; then
     . ~/.bash_aliases.local
 fi
-

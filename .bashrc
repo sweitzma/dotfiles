@@ -82,5 +82,63 @@ fi
 #  configurations
 #####################################
 
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+# [Host]: ~/path/to/pwd (git branch) -
+#  $ <prompt>
+PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
+__prompt_command() {
+    local EXIT="$?" # This needs to be first
+    local RCol='\[\e[0m\]'    # reset color
+    local BRed='\[\e[1;31m\]' # bright red
+    local Gre='\[\e[0;32m\]'  # green
+    local BGre='\[\e[1;32m\]' # bright green
+    local Yel='\[\e[0;33m\]'  # yellow
+    local Blu='\[\e[0;34m\]'  # blue
+
+    if [ $EXIT != 0 ]; then
+      EXIT_STATUS="${BRed}-${RCol}"
+    else
+      EXIT_STATUS="${BGre}-${RCol}"
+    fi
+
+    PS1=""
+    PS1+="${Blu}[\h]"
+    PS1+="${RCol}: "
+    PS1+="${Gre}\w"
+    PS1+="${Yel} $(parse_git_branch)"
+    PS1+=" $EXIT_STATUS$EXIT_STATUS$EXIT_STATUS"
+    PS1+="${RCol}\n $ "
+}
+
+export FZF_DEFAULT_COMMAND='fd --type f --no-ignore-vcs -H'
+
+# added by Miniconda3 4.7.10 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/miniconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/miniconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
+
+export AWS_PROFILE=strln
+
+# Bash completion
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+# Autojump
+[[ -s /Users/samweitzman/.autojump/etc/profile.d/autojump.sh ]] && source /Users/samweitzman/.autojump/etc/profile.d/autojump.sh
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 source ~/.bashrc.local
