@@ -7,6 +7,7 @@ syntax on
 set t_Co=256
 set background=dark
 silent! colorscheme monokai
+set encoding=UTF-8
 
 """ Base settings
 set number relativenumber " show linenumbers
@@ -57,6 +58,8 @@ filetype plugin indent on
 au FileType ruby setlocal ts=2 sts=2 sw=2
 au FileType python setlocal ts=4 sts=4 sw=4
 au FileType javascript setlocal ts=2 sts=2 sw=2
+au FileType markdown setlocal conceallevel=0
+au FileType tex setlocal conceallevel=0 tw=100
 
 " Extra whitespace at the end of lines
 " highlight ExtraWhitespace ctermbg=red guibg=red
@@ -83,7 +86,7 @@ call plug#begin()
 
   """" look
   Plug 'crusoexia/vim-monokai'                 " theme
-  Plug 'vim-airline/vim-airline'               " status bar upgrade
+  " Plug 'vim-airline/vim-airline'               " status bar upgrade
   Plug 'yggdroot/indentline'                   " show indents nicely
 
   """" ease of editing
@@ -125,11 +128,16 @@ call plug#begin()
   " tommcdo/vim-lion
   " tpope/vim-surround
   " takac/vim-hardtime
-  " Plug 'itchyny/lightline.vim'
+  " Plug 'vifm/vifm.vim'                         " ViFm file manager
+  Plug 'itchyny/lightline.vim'
+  Plug 'mengelbrecht/lightline-bufferline'
+  Plug 'ap/vim-css-color'
+  Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 """ [plugin] indentline
 let g:indentLine_char = '▏'
+let g:indentLine_fileTypeExclude = ['markdown', 'tex']
 
 """ [plugin] Easymotion
 map <Space> <Plug>(easymotion-prefix)
@@ -144,9 +152,27 @@ let g:ale_linters = {
 \}
 let g:ale_set_highlights = 0
 
-""" [plugin] Airline
-let g:airline#extensions#tabline#enabled = 1     " show top statusline for buffers
-let g:airline#extensions#tabline#fnamemod = ':t' " show filename only, no path
+" """ [plugin] Lightline
+set laststatus=2
+set showtabline=2
+let g:lightline#bufferline#show_number     = 1
+let g:lightline#bufferline#shorten_path    = 1
+let g:lightline#bufferline#enable_devicons = 0 " need new font for this
+
+"https://github.com/itchyny/lightline.vim/issues/61
+"
+let g:lightline                  = {}
+let g:lightline.colorcolumn      = 'wombat'
+let g:lightline.tabline          = {}
+let g:lightline.tabline.left     = [['buffers']]
+let g:lightline.tabline.right     = []
+
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+let g:lightline.active           = {}
+let g:lightline.active.left      = [['mode', 'paste'], ['readonly', 'filename', 'modified']]
+let g:lightline.active.right     = [['lineinfo'], ['percent'],['fileformat', 'fileencoding', 'filetype']]
+
 
 """ [plugin] coc.vim
 set nobackup
@@ -168,6 +194,12 @@ let g:rg_highlight = 1
 
 """ [plugin] FlyGrep
 nnoremap <C-f> :FlyGrep<CR>
+
+""" [plugin] vimtex
+let g:vimtex_compiler_enabled = 0
+
+""" [plugin] vim-polyglot
+let g:polyglot_disabled = ['latex']
 
 """ Key Mappings
 noremap ; :

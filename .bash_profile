@@ -19,3 +19,6 @@ if test -f "$HOME/.bash_profile.local"; then
 fi
 
 source ~/.bashrc
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
