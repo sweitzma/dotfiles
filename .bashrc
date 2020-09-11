@@ -88,6 +88,9 @@ parse_git_branch() {
 
 # [Host]: ~/path/to/pwd (git branch) -
 #  $ <prompt>
+
+: ${MYHOSTNAME:=$HOSTNAME}
+
 PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
 __prompt_command() {
     local EXIT="$?" # This needs to be first
@@ -105,7 +108,7 @@ __prompt_command() {
     fi
 
     PS1=""
-    PS1+="${Blu}[\h]"
+    PS1+="${Blu}[$MYHOSTNAME]"
     PS1+="${RCol}: "
     PS1+="${Gre}\w"
     PS1+="${Yel} $(parse_git_branch)"
@@ -114,24 +117,6 @@ __prompt_command() {
 }
 
 export FZF_DEFAULT_COMMAND='fd --type f --no-ignore-vcs -H'
-
-# added by Miniconda3 4.7.10 installer
-# >>> conda init >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/miniconda3/bin/conda' shell.bash hook 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    \eval "$__conda_setup"
-else
-    if [ -f "/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/miniconda3/etc/profile.d/conda.sh"
-        CONDA_CHANGEPS1=false conda activate base
-    else
-        \export PATH="/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda init <<<
-
 export AWS_PROFILE=strln
 
 # Bash completion
