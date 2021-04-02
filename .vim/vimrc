@@ -124,7 +124,6 @@ call plug#begin()
   " QuickScope
   " honza/vim-snippets
   " wellle/targets.vim
-  " tpope/vim-repeat
   " tommcdo/vim-lion
   " tpope/vim-surround
   " takac/vim-hardtime
