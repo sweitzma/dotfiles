@@ -19,11 +19,11 @@ function vf {
     echo $(echo $* | sed 's/ //g' | sed 's/_//g')
     export LAST_FILE=$(fzf -i --height 40% -q $(echo $* | sed 's/ //g' | sed 's/_//g'))
   fi
-  vim $LAST_FILE
+  nvim $LAST_FILE
 }
 
-alias vi='vim'
-alias vl='vim $LAST_FILE'
+alias vi='nvim'
+alias vl='nvim $LAST_FILE'
 alias elf='echo $LAST_FILE'
 
 # Org mode shortcuts

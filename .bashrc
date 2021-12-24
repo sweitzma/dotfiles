@@ -127,3 +127,4 @@ export AWS_PROFILE=strln
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 source ~/.bashrc.local
+
