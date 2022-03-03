@@ -122,9 +122,6 @@ export AWS_PROFILE=strln
 # Bash completion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-# Autojump
-[[ -s /Users/samweitzman/.autojump/etc/profile.d/autojump.sh ]] && source /Users/samweitzman/.autojump/etc/profile.d/autojump.sh
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 source ~/.bashrc.local
 

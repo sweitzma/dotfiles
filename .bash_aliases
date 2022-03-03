@@ -1,13 +1,8 @@
 # Shell navigation
 alias pd='pushd .'
 
-# Quick Configuration
-alias vimrc='vim ~/.vim/vimrc'
-alias lvimrc='vim ~/.vim/vimrc.local'
-
 # Git
 alias irebase='git rebase -i HEAD~10'
-alias mrebase='git rebase master'
 
 # Vim and File Editing
 function vf {
@@ -25,10 +20,6 @@ function vf {
 alias vi='nvim'
 alias vl='nvim $LAST_FILE'
 alias elf='echo $LAST_FILE'
-
-# Org mode shortcuts
-alias wk="emacs $HOME/org/work.org"
-alias hm="emacs $HOME/org/home.org"
 
 if [ -f ~/.bash_aliases.local ]; then
     . ~/.bash_aliases.local
