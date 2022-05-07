@@ -5,8 +5,8 @@ export PATH=/usr/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 
-if [ -d "$HOME/local/bin" ] ; then
-  export PATH="$HOME/local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ] ; then
+  export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Source other files
