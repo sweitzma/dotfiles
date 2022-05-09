@@ -117,7 +117,6 @@ __prompt_command() {
 }
 
 export FZF_DEFAULT_COMMAND='fd --type f --no-ignore-vcs -H'
-export AWS_PROFILE=strln
 
 # Bash completion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
