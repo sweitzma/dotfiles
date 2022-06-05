@@ -35,8 +35,4 @@ safely_point_to_new_dotfile .bash_logout
 
 setup_preferred_hostname
 
-echo "=== Setting up tmux"
-safely_point_to_new_dotfile .tmux.conf
-git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-
 echo "=== Setup complete"

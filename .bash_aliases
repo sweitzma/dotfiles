@@ -17,9 +17,24 @@ function vf {
   nvim $LAST_FILE
 }
 
+# Tmux
+function tf {
+  session_chosen=$(FZF_DEFAULT_COMMAND='tmux ls' fzf | awk '{print $1}')
+  tmux a -t ${session_chosen::-1}
+}
+
+# Change directory
+function cf {
+  cd $(FZF_DEFAULT_COMMAND='fd --type d -H --ignore-vcs' fzf)
+}
+
 alias vi='nvim'
 alias vl='nvim $LAST_FILE'
 alias elf='echo $LAST_FILE'
+
+alias cd..='cd ../'
+alias cd...='cd ../..'
+alias cd....='cd ../../..'
 
 if [ -f ~/.bash_aliases.local ]; then
     . ~/.bash_aliases.local
